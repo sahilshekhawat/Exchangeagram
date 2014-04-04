@@ -37,9 +37,6 @@ group :test do
 	gem 'webrat', '0.7.1'
 end
 
-group :development do
-	gem 'rspec-rails', '2.0.0'
-end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
