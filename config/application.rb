@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
+require 'rails/all'
 require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
@@ -9,10 +10,16 @@ require "sprockets/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env)
+Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Exchangeagram
   class Application < Rails::Application
+    if Rails.env.test?
+        initializer :after => :initialize_dependency_mechanism do
+# Work around initializer in railties/lib/rails/application/bootstrap.rb
+        ActiveSupport::Dependencies.mechanism = :load
+        end
+    end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
