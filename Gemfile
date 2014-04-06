@@ -33,7 +33,7 @@ group :doc do
 end
 
 group :test, :development do
-	gem 'spork'
+	gem 'spork-rails'
 	gem 'rspec-rails'
 	gem 'webrat', '0.7.1'
 	gem 'capybara'
